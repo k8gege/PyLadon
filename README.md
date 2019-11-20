@@ -1,5 +1,4 @@
-# Ladon Scanner For Python 2.7
-![](https://k8gege.github.io/k8img/Ladon/Dragon.jpg)
+# Ladon Scanner For Python
 
 [![Author](https://img.shields.io/badge/Author-k8gege-blueviolet)](https://github.com/k8gege) 
 [![Ladon](https://img.shields.io/badge/Ladon-5.5-yellowgreen)](https://github.com/k8gege/Ladon) 
@@ -10,16 +9,10 @@
 [![GitHub license](https://img.shields.io/github/license/k8gege/Ladon)](https://github.com/k8gege/Ladon)
 
 
-### Ladon 5.5
-<img src=https://k8gege.github.io/k8img/Ladon/Ladon.gif></img>
-### Cobalt Strike
-<img src=https://k8gege.github.io/k8img/Ladon/CS_Ladon.gif></img>
-### PowerLadon
-<img src=https://k8gege.github.io/k8img/Ladon/PowerLadon.gif></img>
 ### PythonLadon
+python版功能较少,无论在Windows还是Linux系统性能以及速度均也比不上Ladon.exe<br>
 <img src=https://k8gege.github.io/k8img/Ladon//py/PyLadon.PNG></img>
-### LinuxLadon
-<img src=https://k8gege.github.io/k8img/Ladon/lnx/Linux_OnlinePC.PNG></img>
+
 
 ### 程序简介
 
