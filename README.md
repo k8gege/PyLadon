@@ -9,8 +9,9 @@
 [![GitHub license](https://img.shields.io/github/license/k8gege/Ladon)](https://github.com/k8gege/Ladon)
 
 
-### PythonLadon
-python版功能较少,无论在Windows还是Linux系统性能以及速度均也比不上Ladon.exe<br>
+### PyLadon
+目前python版功能较少,无论在Windows还是Linux系统性能以及速度均也比不上Ladon.exe<br>
+唯一的优点是跨平台,后续会添加相关功能，缺点也明显py打包程序很大，不太适合在目标使用<br>
 <img src=https://k8gege.github.io/k8img/Ladon//py/PyLadon.PNG></img>
 
 
