@@ -1,0 +1,16 @@
+Ladon Scanner For Python
+
+
+1.1 20201204
+[+] SmbGhostPoc  永恒之黑(此模块最好用PY3) SMBGhost (CVE-2020-0796) and SMBleed (CVE-2020-1206) Scanner
+
+
+1.0 20191120
+=============================================================
+OnlinePC	存活主机探测 py2/py3
+SmbVer		SMB协议版本  py2/py3  ipmacket 0.9.22也可以
+OsName		主机名
+MS17010		永恒之蓝漏洞
+DLL			自定义DLL模块
+PhpStudyPoc	PhpStudy后门
+

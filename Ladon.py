@@ -8,7 +8,7 @@
 #python Ladon.py 192.168.1.5 OnlinePC
 #python Ladon.py 192.168.1.5/24 OnlinePC
 #python Ladon.py 192.168.1.5/24 MS17010
-#python Ladon.py 192.168.1.5/24 dll
+#python Ladon.py 192.168.1.5/24 DLL
 
 import platform
 import socket
@@ -79,7 +79,7 @@ def GetSmbVul(ip):
 			#print "online "+ip
 	try:
 		SmbVul=smbcheck(ip)
-		if SmbVul<>None:
+		if SmbVul!=None:
 			print('%s\t%s'%(ip,SmbVul))
 	except:
 		pass
@@ -114,7 +114,7 @@ def getHostName(target):
 	try:
 	  result = socket.gethostbyaddr(target)
 	  return result[0]
-	except socket.herror, e:
+	except socket.herror as e:
 	  return ''
 def getos():
 	return platform.system()
@@ -146,6 +146,14 @@ def Ladon(ip):
 			time.sleep(0.1)
 	else:
 		netscan(ip)
+
+def PhpStudyPoc(ip):
+	sys.argv[1]=ip
+	import PhpStudyPoc
+
+def SmbGhostPoc(ip):
+	sys.argv[1]=ip
+	import SmbGhostPoc
 
 def LadonSMBver(ip): 
 	if '/24' in ip:
@@ -186,7 +194,7 @@ def pingIP(ip):
 	output = os.popen('ping -%s 1 %s'%(ptype,ip)).readlines()
 	for w in output:
 		if str(w).upper().find('TTL')>=0:
-			print ip+"\t"+getMac(ip)
+			print (ip+"\t"+getMac(ip))
 			
 			# try:
 				# SmbVul=smbcheck(ip)
@@ -235,7 +243,7 @@ def smbVersion(rhost):
 		smb = SMBConnection(host, host, sess_port=port)
 	except NetBIOSError:
 		return
-	except socket.error, v:
+	except socket.error as v:
 		error_code = v[0]
 		if error_code == errno.ECONNREFUSED:
 			return
@@ -243,22 +251,22 @@ def smbVersion(rhost):
 			return
 	dialect = smb.getDialect()
 	if dialect == SMB_DIALECT:
-		print(host + "\tSMBv1 ")
+		print(host + "\tSMBv1\tXP/Win2003")
 	elif dialect == SMB2_DIALECT_002:
-		print(host + "\tSMBv2.0 ")
+		print(host + "\tSMBv2.0\tVista/2008")
 	elif dialect == SMB2_DIALECT_21:
-		print(host + "\tSMBv2.1 ")
+		print(host + "\tSMBv2.1\tWin7/2008")
 	else:
-		print(host + "\tSMBv3.0 ")
+		print(host + "\tSMBv3.0\tWin10/2012/2016/2019")
 
 ipc=""
 if __name__ == '__main__':
 
-	print('Ladon Scanner 1.0')
+	print('Ladon 1.1 by K8gege')
 	parser = argparse.ArgumentParser()
 	parser.add_argument('ip',help='IP or IP/24') 
 	#parser.add_argument('--type', '-t', type=str, choices=['ping', 'smbver', 'osname','ms17010','dll'], help='Scan Type',default='ping')
-	parser.add_argument('type', type=str, choices=['OnlinePC', 'SmbVer', 'OsName','MS17010','DLL'], help='Scan Type',default='OnlinePC')
+	parser.add_argument('type', type=str, choices=['OnlinePC', 'SmbVer', 'OsName','MS17010','DLL','PhpStudyPoc','SmbGhostPoc'], help='Scan Type',default='OnlinePC')
 	args = parser.parse_args()
 	if getos() == 'Windows':
 		ptype = 'n'
@@ -269,13 +277,13 @@ if __name__ == '__main__':
 		sys.exit()
 	scanip=args.ip
 	if args.type == 'OnlinePC':
-		print "Scan OnlinePC"
+		print ("Scan OnlinePC")
 		PrintLine()
 		Cping(scanip)
 	elif args.type == 'SmbVer':
-		print "Scan Smb Version "
+		print ("Scan Smb Version ")
 		LadonSMBver(scanip)
-	elif args.type == 'dll':
+	elif args.type == 'DLL':
 		if ptype =='n':
 			if(os.path.exists('netscan40.dll')):
 				print('load netscan40.dll (.net >= 4.0)')
@@ -287,10 +295,14 @@ if __name__ == '__main__':
 			print('The system is not supported.')
 		sys.exit(1)
 	elif args.type == 'MS17010':
-		print "Scan MS17-010 VUL \n" + scanip
+		print ("Scan MS17-010 VUL \n" + scanip)
 		ScanSmbVul(scanip)
 	elif args.type == 'OsName':
-		print "Scan hostName \n" + scanip
+		print ("Scan hostName \n" + scanip)
 		LadonOSname(scanip)
+	elif args.type == 'PhpStudyPoc':
+		PhpStudyPoc(scanip)
+	elif args.type == 'SmbGhostPoc':
+		SmbGhostPoc(scanip)
 	PrintLine()
 	print('Scan Finished!')
